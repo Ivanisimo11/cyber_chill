@@ -3,14 +3,14 @@ package com.cyber_chill.entity;
 
 public class Game {
     private Long id;
-    private String Name;
+    private String name;
 
     public Game() {
     }
 
     public Game(Long id, String name) {
         this.id = id;
-        Name = name;
+        this.name = name;
     }
 
     public Long getId() {
@@ -22,18 +22,18 @@ public class Game {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "Game{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
+                ", Name='" + name + '\'' +
                 '}';
     }
 }

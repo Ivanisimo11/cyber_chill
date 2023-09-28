@@ -1,11 +1,9 @@
 package com.cyber_chill.entity;
 
-import java.sql.Time;
-
 public class Computer {
     private Long id;
     private Double price;
-    private Reserve Reservation;
+    private Reserve reservation;
 
     public Computer() {
     }
@@ -13,7 +11,7 @@ public class Computer {
     public Computer(Long id, Double price, Reserve reservation) {
         this.id = id;
         this.price = price;
-        Reservation = reservation;
+        this.reservation = reservation;
     }
 
     public Long getId() {
@@ -33,11 +31,11 @@ public class Computer {
     }
 
     public Reserve getReservation() {
-        return Reservation;
+        return reservation;
     }
 
     public void setReservation(Reserve reservation) {
-        Reservation = reservation;
+        this.reservation = reservation;
     }
 
     @Override
@@ -45,7 +43,7 @@ public class Computer {
         return "Computer{" +
                 "id=" + id +
                 ", price=" + price +
-                ", Reservation=" + Reservation +
+                ", Reservation=" + reservation +
                 '}';
     }
 

@@ -1,21 +1,35 @@
 package com.cyber_chill.entity;
 
 import java.sql.Time;
+import java.time.Duration;
 
 public class Reserve {
     private Long id;
     private User user;
     private Computer computer;
-    private Time time;
+    private Duration time;
+
+    private Double price;
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+
 
     public Reserve() {
     }
 
-    public Reserve(Long id, User user, Computer computer, Time time) {
+    public Reserve(Long id, User user, Computer computer, Duration time, Double price) {
         this.id = id;
         this.user = user;
         this.computer = computer;
         this.time = time;
+        this.price = price;
     }
 
     @Override
@@ -52,11 +66,11 @@ public class Reserve {
         this.computer = computer;
     }
 
-    public Time getTime() {
+    public Duration getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(Duration time) {
         this.time = time;
     }
 }

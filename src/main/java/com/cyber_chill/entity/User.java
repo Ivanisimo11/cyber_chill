@@ -1,27 +1,27 @@
 package com.cyber_chill.entity;
 
-import java.sql.Time;
-
 public class User {
     private Long id;
-    private String Name;
+    private String name;
     private UserRole role;
-    private Reserve Reservation;
+    private Reserve reservation;
+
+    private UserLevel level;
 
     public User(Long id, String name, UserRole role, Reserve reservation) {
         this.id = id;
-        Name = name;
+        this.name = name;
         this.role = role;
-        Reservation = reservation;
+        this.reservation = reservation;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
+                ", Name='" + name + '\'' +
                 ", role=" + role +
-                ", Reservation=" + Reservation +
+                ", Reservation=" + reservation +
                 '}';
     }
 
@@ -37,11 +37,11 @@ public class User {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public UserRole getRole() {
@@ -53,10 +53,18 @@ public class User {
     }
 
     public Reserve getReservation() {
-        return Reservation;
+        return reservation;
     }
 
     public void setReservation(Reserve reservation) {
-        Reservation = reservation;
+        this.reservation = reservation;
+    }
+
+    public UserLevel getLevel() {
+        return level;
+    }
+
+    public void setLevel(UserLevel level) {
+        this.level = level;
     }
 }

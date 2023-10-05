@@ -10,7 +10,7 @@ public interface ReserveService {
 
     public Reserve getReserve(Long id);
 
-    public void addOrUpdateReserve(Reserve reserve);
+    public Reserve addOrUpdateReserve(Reserve reserve);
 
     public void removeReserve(Long id);
 }

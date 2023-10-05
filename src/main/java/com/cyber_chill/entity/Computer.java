@@ -1,17 +1,38 @@
 package com.cyber_chill.entity;
 
+import jakarta.persistence.*;
+
+import javax.naming.Name;
+import java.util.List;
+
+@Entity
 public class Computer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Double price;
-    private Reserve reservation;
+    @OneToMany
+    private List<Reserve> reservations;
+
+    @ManyToMany
+    private List<Game> games;
 
     public Computer() {
     }
 
-    public Computer(Long id, Double price, Reserve reservation) {
-        this.id = id;
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
+
+    public Computer(Double price, List<Reserve> reservations, List<Game> games) {
         this.price = price;
-        this.reservation = reservation;
+        this.reservations = reservations;
+        this.games = games;
     }
 
     public Long getId() {
@@ -30,12 +51,12 @@ public class Computer {
         this.price = price;
     }
 
-    public Reserve getReservation() {
-        return reservation;
+    public List<Reserve> getReservation() {
+        return reservations;
     }
 
-    public void setReservation(Reserve reservation) {
-        this.reservation = reservation;
+    public void setReservation(List<Reserve> reservation) {
+        this.reservations = reservation;
     }
 
     @Override
@@ -43,7 +64,7 @@ public class Computer {
         return "Computer{" +
                 "id=" + id +
                 ", price=" + price +
-                ", Reservation=" + reservation +
+                ", Reservation=" + reservations +
                 '}';
     }
 

@@ -9,7 +9,7 @@ public interface ComputerService {
 
     Computer getComputer(Long id);
 
-    void addOrUpdateComputer(Computer computer);
+    Computer addOrUpdateComputer(Computer computer);
 
     void removeComputer(Long id);
 }

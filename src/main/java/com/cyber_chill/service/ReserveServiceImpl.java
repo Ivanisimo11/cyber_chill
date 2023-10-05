@@ -2,40 +2,84 @@ package com.cyber_chill.service;
 
 import com.cyber_chill.dao.ReserveDAO;
 import com.cyber_chill.entity.Reserve;
+import com.cyber_chill.entity.User;
+import com.cyber_chill.repositories.ReserveRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
-@Component
+@Service
 public class ReserveServiceImpl implements ReserveService {
-    ReserveDAO reserveDAO;
 
+    private final ReserveRepository repository;
+    private final DiscountService discountService;
 
-    private DiscountService discountService;
+    public ReserveServiceImpl(ReserveRepository repository, DiscountService discountService) {
+        this.repository = repository;
+        this.discountService = discountService;
+    }
 
     @Override
     public List<Reserve> getAllReserves() {
-        return reserveDAO.getAllReserves();
+        return repository.findAll();
     }
 
     @Override
     public Reserve getReserve(Long id) {
-        return reserveDAO.getReserve(id);
+        Optional<Reserve> oReserve = repository.findById(id);
+        if(oReserve.isPresent())
+            return oReserve.get();
+        else
+            throw new RuntimeException("Reserve not found");
     }
 
     @Override
-    public void addOrUpdateReserve(Reserve reserve) {
+    public Reserve addOrUpdateReserve(Reserve reserve) {
         double computerPricePerHour = reserve.getComputer().getPrice();
         long hours = reserve.getTime().get(ChronoUnit.HOURS);
         double userDiscount = discountService.getDiscount(reserve.getUser()) / 100;
 
         reserve.setPrice(computerPricePerHour * hours * userDiscount);
-        reserveDAO.addOrUpdateReserve(reserve);
+
+        return repository.save(reserve);
     }
 
     @Override
     public void removeReserve(Long id) {
-        reserveDAO.removeReserve(id);
+        repository.deleteById(id);
+
     }
+    //    ReserveDAO reserveDAO;
+//
+//
+//    private DiscountService discountService;
+//
+//    @Override
+//    public List<Reserve> getAllReserves() {
+//        return reserveDAO.getAllReserves();
+//    }
+//
+//    @Override
+//    public Reserve getReserve(Long id) {
+//        return reserveDAO.getReserve(id);
+//    }
+//
+//    @Override
+//    public void addOrUpdateReserve(Reserve reserve) {
+//        double computerPricePerHour = reserve.getComputer().getPrice();
+//        long hours = reserve.getTime().get(ChronoUnit.HOURS);
+//        double userDiscount = discountService.getDiscount(reserve.getUser()) / 100;
+//
+//        reserve.setPrice(computerPricePerHour * hours * userDiscount);
+//        reserveDAO.addOrUpdateReserve(reserve);
+//    }
+//
+//    @Override
+//    public void removeReserve(Long id) {
+//        reserveDAO.removeReserve(id);
+//    }
 }

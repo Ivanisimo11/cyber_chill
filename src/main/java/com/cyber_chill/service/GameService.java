@@ -9,7 +9,7 @@ public interface GameService {
 
     public Game getGame(Long id);
 
-    public void addOrUpdateGame(Game game);
+    public Game addOrUpdateGame(Game game);
 
     public void removeGame(Long id);
 }

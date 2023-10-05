@@ -1,16 +1,34 @@
 package com.cyber_chill.entity;
 
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
 public class Game {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+
+    @ManyToMany
+    private List<Computer> computers;
 
     public Game() {
     }
 
-    public Game(Long id, String name) {
-        this.id = id;
+    public Game(String name, List<Computer> computers) {
         this.name = name;
+        this.computers = computers;
+    }
+
+    public List<Computer> getComputers() {
+        return computers;
+    }
+
+    public void setComputers(List<Computer> computers) {
+        this.computers = computers;
     }
 
     public Long getId() {

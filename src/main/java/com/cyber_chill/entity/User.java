@@ -1,19 +1,24 @@
 package com.cyber_chill.entity;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "_user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private UserRole role;
-    private Reserve reservation;
+
+    @OneToMany
+    private List<Reserve> reservations;
 
     private UserLevel level;
 
-    public User(Long id, String name, UserRole role, Reserve reservation) {
-        this.id = id;
-        this.name = name;
-        this.role = role;
-        this.reservation = reservation;
-    }
+
 
     @Override
     public String toString() {
@@ -21,7 +26,7 @@ public class User {
                 "id=" + id +
                 ", Name='" + name + '\'' +
                 ", role=" + role +
-                ", Reservation=" + reservation +
+                ", Reservation=" + reservations +
                 '}';
     }
 
@@ -52,12 +57,12 @@ public class User {
         this.role = role;
     }
 
-    public Reserve getReservation() {
-        return reservation;
+    public List<Reserve> getReservation() {
+        return reservations;
     }
 
-    public void setReservation(Reserve reservation) {
-        this.reservation = reservation;
+    public void setReservation(List<Reserve> reservation) {
+        this.reservations = reservation;
     }
 
     public UserLevel getLevel() {

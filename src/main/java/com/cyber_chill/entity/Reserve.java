@@ -1,11 +1,17 @@
 package com.cyber_chill.entity;
 
+import jakarta.persistence.*;
+
 import java.sql.Time;
 import java.time.Duration;
-
+@Entity
 public class Reserve {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
     private User user;
+    @ManyToOne
     private Computer computer;
     private Duration time;
 

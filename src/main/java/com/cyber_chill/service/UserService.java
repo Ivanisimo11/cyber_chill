@@ -9,7 +9,7 @@ public interface UserService {
 
     public User getUser(Long id);
 
-    public void addOrUpdateUser(User user);
+    public User addOrUpdateUser(User user);
 
     public void removeUser(Long id);
 }

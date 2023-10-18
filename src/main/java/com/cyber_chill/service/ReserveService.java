@@ -1,5 +1,6 @@
 package com.cyber_chill.service;
 
+import com.cyber_chill.dto.ReserveDto;
 import com.cyber_chill.entity.Reserve;
 
 
@@ -10,7 +11,7 @@ public interface ReserveService {
 
     public Reserve getReserve(Long id);
 
-    public Reserve addOrUpdateReserve(Reserve reserve);
+    public Reserve addOrUpdateReserve(ReserveDto reserve);
 
     public void removeReserve(Long id);
 }

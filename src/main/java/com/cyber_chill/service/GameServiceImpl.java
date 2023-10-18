@@ -1,10 +1,9 @@
 package com.cyber_chill.service;
 
-import com.cyber_chill.dao.GameDAO;
+import com.cyber_chill.dto.GameDto;
 import com.cyber_chill.entity.Game;
-import com.cyber_chill.entity.User;
+import com.cyber_chill.exception.ItemNotFoundException;
 import com.cyber_chill.repositories.GameRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,12 +29,12 @@ public class GameServiceImpl implements GameService {
         if(oGame.isPresent())
             return oGame.get();
         else
-            throw new RuntimeException("Game not found");
+            throw new ItemNotFoundException("Game not found");
     }
 
     @Override
-    public Game addOrUpdateGame(Game game) {
-        return repository.save(game);
+    public Game addOrUpdateGame(GameDto game) {
+        return repository.save(new Game(game));
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.cyber_chill.entity;
 
+import com.cyber_chill.dto.ReserveDto;
 import jakarta.persistence.*;
 
-import java.sql.Time;
 import java.time.Duration;
 @Entity
 public class Reserve {
@@ -27,7 +27,14 @@ public class Reserve {
 
 
 
-    public Reserve() {
+    public Reserve(ReserveDto reserveDto) {
+        id = reserveDto.getId();
+        user = new User();
+        user.setId(reserveDto.getUserID());
+        computer = new Computer();
+        computer.setId(reserveDto.getComputerID());
+        time = reserveDto.getTime();
+        price = reserveDto.getPrice();
     }
 
     public Reserve(Long id, User user, Computer computer, Duration time, Double price) {

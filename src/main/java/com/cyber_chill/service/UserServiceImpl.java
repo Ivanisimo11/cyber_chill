@@ -1,10 +1,10 @@
 package com.cyber_chill.service;
 
-import com.cyber_chill.dao.UserDAO;
+import com.cyber_chill.dto.UserDto;
 import com.cyber_chill.entity.User;
+import com.cyber_chill.exception.ItemAlreadyExists;
+import com.cyber_chill.exception.ItemNotFoundException;
 import com.cyber_chill.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,12 +30,24 @@ public class UserServiceImpl implements UserService{
         if(oUser.isPresent())
             return oUser.get();
         else
-            throw new RuntimeException("User not found");
+            throw new ItemNotFoundException("User not found");
     }
 
     @Override
-    public User addOrUpdateUser(User user) {
-        return repository.save(user);
+    public User addUser(UserDto user) {
+        if (repository.existsByEmail(user.getEmail())) {
+            throw new ItemAlreadyExists("User with such email already exists");
+        }
+        return repository.save(new User(user));
+    }
+
+    @Override
+    public User updateUser(Long id, UserDto user) {
+        if (repository.existsByIdIsNotAndEmail(id, user.getEmail())) {
+            throw new ItemAlreadyExists("User with such email already exists");
+        }
+        user.setId(id);
+        return repository.save(new User(user));
     }
 
     @Override

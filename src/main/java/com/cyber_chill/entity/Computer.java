@@ -1,5 +1,6 @@
 package com.cyber_chill.entity;
 
+import com.cyber_chill.dto.ComputerDto;
 import jakarta.persistence.*;
 
 import javax.naming.Name;
@@ -18,6 +19,11 @@ public class Computer {
     private List<Game> games;
 
     public Computer() {
+    }
+
+    public Computer(ComputerDto computerDto) {
+        id = computerDto.getId();
+        price = computerDto.getPrice();
     }
 
 

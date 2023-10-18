@@ -1,5 +1,6 @@
 package com.cyber_chill.service;
 
+import com.cyber_chill.dto.ComputerDto;
 import com.cyber_chill.entity.Computer;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface ComputerService {
 
     Computer getComputer(Long id);
 
-    Computer addOrUpdateComputer(Computer computer);
+    Computer addOrUpdateComputer(ComputerDto computerDto);
 
     void removeComputer(Long id);
 }

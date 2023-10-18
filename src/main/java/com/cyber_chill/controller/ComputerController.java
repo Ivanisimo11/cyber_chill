@@ -1,9 +1,11 @@
 package com.cyber_chill.controller;
 
+import com.cyber_chill.dto.ComputerDto;
 import com.cyber_chill.entity.Computer;
 import com.cyber_chill.service.ComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +28,12 @@ public class ComputerController {
     }
 
     @PostMapping("/")
-    public Computer addComputer(@RequestBody Computer computer) {
+    public Computer addComputer(@RequestBody @Validated ComputerDto computer) {
         return computerService.addOrUpdateComputer(computer);
     }
 
     @PutMapping("/{id}")
-    public Computer updateComputer(@PathVariable Long id, @RequestBody Computer computer) {
+    public Computer updateComputer(@PathVariable Long id, @Validated @RequestBody ComputerDto computer) {
         computer.setId(id);
         return computerService.addOrUpdateComputer(computer);
     }

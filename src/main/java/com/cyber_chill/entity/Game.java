@@ -1,6 +1,7 @@
 package com.cyber_chill.entity;
 
 
+import com.cyber_chill.dto.GameDto;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -21,6 +22,11 @@ public class Game {
     public Game(String name, List<Computer> computers) {
         this.name = name;
         this.computers = computers;
+    }
+
+    public Game(GameDto game) {
+        id = game.getId();
+        name = game.getName();
     }
 
     public List<Computer> getComputers() {

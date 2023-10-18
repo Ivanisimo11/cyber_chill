@@ -1,11 +1,9 @@
 package com.cyber_chill.service;
 
-import com.cyber_chill.dao.ReserveDAO;
+import com.cyber_chill.dto.ReserveDto;
 import com.cyber_chill.entity.Reserve;
-import com.cyber_chill.entity.User;
+import com.cyber_chill.exception.ItemNotFoundException;
 import com.cyber_chill.repositories.ReserveRepository;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
@@ -34,17 +32,17 @@ public class ReserveServiceImpl implements ReserveService {
         if(oReserve.isPresent())
             return oReserve.get();
         else
-            throw new RuntimeException("Reserve not found");
+            throw new ItemNotFoundException("Reserve not found");
     }
 
     @Override
-    public Reserve addOrUpdateReserve(Reserve reserve) {
+    public Reserve addOrUpdateReserve(ReserveDto reserveDto) {
+        var reserve = repository.save(new Reserve(reserveDto));
         double computerPricePerHour = reserve.getComputer().getPrice();
         long hours = reserve.getTime().get(ChronoUnit.HOURS);
         double userDiscount = discountService.getDiscount(reserve.getUser()) / 100;
 
         reserve.setPrice(computerPricePerHour * hours * userDiscount);
-
         return repository.save(reserve);
     }
 

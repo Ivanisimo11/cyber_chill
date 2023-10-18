@@ -1,9 +1,11 @@
 package com.cyber_chill.controller;
 
+import com.cyber_chill.dto.GameDto;
 import com.cyber_chill.entity.Game;
 import com.cyber_chill.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +28,12 @@ public class GameController {
     }
 
     @PostMapping("/")
-    public Game addGame(@RequestBody Game game) {
+    public Game addGame(@RequestBody @Validated GameDto game) {
         return gameService.addOrUpdateGame(game);
     }
 
     @PutMapping("/{id}")
-    public Game updateGame(@PathVariable Long id, @RequestBody Game game) {
+    public Game updateGame(@PathVariable Long id, @Validated @RequestBody GameDto game) {
         game.setId(id);
         return gameService.addOrUpdateGame(game);
     }

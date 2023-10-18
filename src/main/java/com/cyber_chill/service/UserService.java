@@ -1,5 +1,6 @@
 package com.cyber_chill.service;
 
+import com.cyber_chill.dto.UserDto;
 import com.cyber_chill.entity.User;
 
 import java.util.List;
@@ -9,7 +10,9 @@ public interface UserService {
 
     public User getUser(Long id);
 
-    public User addOrUpdateUser(User user);
-
     public void removeUser(Long id);
+
+    User addUser(UserDto user);
+
+    User updateUser(Long id, UserDto user);
 }

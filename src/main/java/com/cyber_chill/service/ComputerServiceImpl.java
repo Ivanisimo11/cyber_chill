@@ -1,8 +1,10 @@
 package com.cyber_chill.service;
 
 import com.cyber_chill.dao.ComputerDAO;
+import com.cyber_chill.dto.ComputerDto;
 import com.cyber_chill.entity.Computer;
 import com.cyber_chill.entity.User;
+import com.cyber_chill.exception.ItemNotFoundException;
 import com.cyber_chill.repositories.ComputerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,12 +33,12 @@ public class ComputerServiceImpl implements ComputerService{
         if(oComputer.isPresent())
             return oComputer.get();
         else
-            throw new RuntimeException("Computer not found");
+            throw new ItemNotFoundException("Computer not found");
     }
 
     @Override
-    public Computer addOrUpdateComputer(Computer computer) {
-        return repository.save(computer);
+    public Computer addOrUpdateComputer(ComputerDto computerDto) {
+        return repository.save(new Computer(computerDto));
     }
 
     @Override

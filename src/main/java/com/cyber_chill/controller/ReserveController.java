@@ -1,8 +1,10 @@
 package com.cyber_chill.controller;
 
+import com.cyber_chill.dto.ReserveDto;
 import com.cyber_chill.entity.Reserve;
 import com.cyber_chill.service.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +27,12 @@ public class ReserveController {
     }
 
     @PostMapping("/")
-    public Reserve addReserve(@RequestBody Reserve reserve) {
+    public Reserve addReserve(@RequestBody @Validated ReserveDto reserve) {
         return reserveService.addOrUpdateReserve(reserve);
     }
 
     @PutMapping("/{id}")
-    public Reserve updateReserve(@PathVariable Long id, @RequestBody Reserve reserve) {
+    public Reserve updateReserve(@PathVariable Long id, @Validated @RequestBody ReserveDto reserve) {
         reserve.setId(id);
         return reserveService.addOrUpdateReserve(reserve);
     }

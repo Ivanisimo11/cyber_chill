@@ -1,6 +1,6 @@
 package com.cyber_chill.service;
 
-import com.cyber_chill.dto.UserDto;
+import com.cyber_chill.controller.dto.UserDto;
 import com.cyber_chill.entity.User;
 import com.cyber_chill.exception.ItemAlreadyExists;
 import com.cyber_chill.exception.ItemNotFoundException;

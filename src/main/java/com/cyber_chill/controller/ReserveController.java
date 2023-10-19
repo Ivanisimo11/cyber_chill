@@ -1,8 +1,8 @@
 package com.cyber_chill.controller;
 
-import com.cyber_chill.dto.ReserveDto;
-import com.cyber_chill.entity.Reserve;
-import com.cyber_chill.service.ReserveService;
+import com.cyber_chill.fake.fakeDto.FakeReserveDto;
+import com.cyber_chill.entity.FakeReserve;
+import com.cyber_chill.fake.fakeService.FakeReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,25 +14,25 @@ import java.util.List;
 public class ReserveController {
 
     @Autowired
-    private ReserveService reserveService;
+    private FakeReserveService reserveService;
 
     @GetMapping("/")
-    public List<Reserve> getAllReserves() {
+    public List<FakeReserve> getAllReserves() {
         return reserveService.getAllReserves();
     }
 
     @GetMapping("/{id}")
-    public Reserve getReserve(@PathVariable Long id) {
+    public FakeReserve getReserve(@PathVariable Long id) {
         return reserveService.getReserve(id);
     }
 
     @PostMapping("/")
-    public Reserve addReserve(@RequestBody @Validated ReserveDto reserve) {
+    public FakeReserve addReserve(@RequestBody @Validated FakeReserveDto reserve) {
         return reserveService.addOrUpdateReserve(reserve);
     }
 
     @PutMapping("/{id}")
-    public Reserve updateReserve(@PathVariable Long id, @Validated @RequestBody ReserveDto reserve) {
+    public FakeReserve updateReserve(@PathVariable Long id, @Validated @RequestBody FakeReserveDto reserve) {
         reserve.setId(id);
         return reserveService.addOrUpdateReserve(reserve);
     }

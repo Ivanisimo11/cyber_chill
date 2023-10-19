@@ -1,6 +1,6 @@
 package com.cyber_chill.service;
 
-import com.cyber_chill.dto.GameDto;
+import com.cyber_chill.controller.dto.GameDto;
 import com.cyber_chill.entity.Game;
 import com.cyber_chill.exception.ItemNotFoundException;
 import com.cyber_chill.repositories.GameRepository;

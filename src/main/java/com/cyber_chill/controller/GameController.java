@@ -1,10 +1,9 @@
 package com.cyber_chill.controller;
 
-import com.cyber_chill.dto.GameDto;
-import com.cyber_chill.entity.Game;
-import com.cyber_chill.service.GameService;
+import com.cyber_chill.fake.fakeDto.FakeGameDto;
+import com.cyber_chill.entity.FakeGame;
+import com.cyber_chill.fake.fakeService.FakeGameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,25 +14,25 @@ import java.util.List;
 public class GameController {
 
     @Autowired
-    private GameService gameService;
+    private FakeGameService gameService;
 
     @GetMapping("/")
-    public List<Game> getAllGames() {
+    public List<FakeGame> getAllGames() {
         return gameService.getAllGames();
     }
 
     @GetMapping("/{id}")
-    public Game getGame(@PathVariable Long id) {
+    public FakeGame getGame(@PathVariable Long id) {
         return gameService.getGame(id);
     }
 
     @PostMapping("/")
-    public Game addGame(@RequestBody @Validated GameDto game) {
+    public FakeGame addGame(@RequestBody @Validated FakeGameDto game) {
         return gameService.addOrUpdateGame(game);
     }
 
     @PutMapping("/{id}")
-    public Game updateGame(@PathVariable Long id, @Validated @RequestBody GameDto game) {
+    public FakeGame updateGame(@PathVariable Long id, @Validated @RequestBody FakeGameDto game) {
         game.setId(id);
         return gameService.addOrUpdateGame(game);
     }

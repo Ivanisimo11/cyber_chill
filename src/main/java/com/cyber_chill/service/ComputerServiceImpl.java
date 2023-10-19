@@ -1,13 +1,9 @@
 package com.cyber_chill.service;
 
-import com.cyber_chill.dao.ComputerDAO;
-import com.cyber_chill.dto.ComputerDto;
+import com.cyber_chill.controller.dto.ComputerDto;
 import com.cyber_chill.entity.Computer;
-import com.cyber_chill.entity.User;
 import com.cyber_chill.exception.ItemNotFoundException;
 import com.cyber_chill.repositories.ComputerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

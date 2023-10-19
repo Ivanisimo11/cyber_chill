@@ -1,6 +1,6 @@
 package com.cyber_chill.entity;
 
-import com.cyber_chill.dto.ReserveDto;
+import com.cyber_chill.controller.dto.ReserveDto;
 import jakarta.persistence.*;
 
 import java.time.Duration;
@@ -16,6 +16,10 @@ public class Reserve {
     private Duration time;
 
     private Double price;
+
+    public Reserve() {
+
+    }
 
     public Double getPrice() {
         return price;

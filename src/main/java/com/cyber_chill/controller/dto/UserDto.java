@@ -1,18 +1,12 @@
 
-package com.cyber_chill.dto;
+package com.cyber_chill.controller.dto;
 
 import com.cyber_chill.entity.User;
 import com.cyber_chill.entity.UserLevel;
 import com.cyber_chill.entity.UserRole;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 

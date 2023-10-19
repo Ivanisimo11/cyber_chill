@@ -1,7 +1,7 @@
 
 package com.cyber_chill.entity;
 
-import com.cyber_chill.dto.UserDto;
+import com.cyber_chill.controller.dto.UserDto;
 import jakarta.persistence.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

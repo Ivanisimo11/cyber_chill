@@ -1,7 +1,7 @@
 package com.cyber_chill.controller;
 
-import com.cyber_chill.entity.User;
-import com.cyber_chill.service.DiscountService;
+import com.cyber_chill.entity.FakeUser;
+import com.cyber_chill.fake.fakeService.FakeDiscountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 public class DiscountController {
 
     @Autowired
-    private DiscountService discountService;
+    private FakeDiscountService discountService;
 
     @GetMapping("/calculate")
-    public double calculateDiscount(@RequestBody User user) {
+    public double calculateDiscount(@RequestBody FakeUser user) {
         return discountService.getDiscount(user);
     }
 }

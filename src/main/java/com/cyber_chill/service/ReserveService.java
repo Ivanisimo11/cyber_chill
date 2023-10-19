@@ -1,6 +1,6 @@
 package com.cyber_chill.service;
 
-import com.cyber_chill.dto.ReserveDto;
+import com.cyber_chill.controller.dto.ReserveDto;
 import com.cyber_chill.entity.Reserve;
 
 

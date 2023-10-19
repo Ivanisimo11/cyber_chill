@@ -1,6 +1,6 @@
 package com.cyber_chill.service;
 
-import com.cyber_chill.dto.UserDto;
+import com.cyber_chill.controller.dto.UserDto;
 import com.cyber_chill.entity.User;
 
 import java.util.List;

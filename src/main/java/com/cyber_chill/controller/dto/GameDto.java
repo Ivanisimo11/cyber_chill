@@ -1,4 +1,4 @@
-package com.cyber_chill.dto;
+package com.cyber_chill.controller.dto;
 
 
 import com.cyber_chill.entity.Game;

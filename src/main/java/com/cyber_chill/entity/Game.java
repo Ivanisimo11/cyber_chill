@@ -1,7 +1,7 @@
 package com.cyber_chill.entity;
 
 
-import com.cyber_chill.dto.GameDto;
+import com.cyber_chill.controller.dto.GameDto;
 import jakarta.persistence.*;
 
 import java.util.List;

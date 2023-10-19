@@ -1,9 +1,8 @@
 package com.cyber_chill.entity;
 
-import com.cyber_chill.dto.ComputerDto;
+import com.cyber_chill.controller.dto.ComputerDto;
 import jakarta.persistence.*;
 
-import javax.naming.Name;
 import java.util.List;
 
 @Entity

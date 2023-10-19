@@ -1,9 +1,7 @@
-package com.cyber_chill.dto;
+package com.cyber_chill.controller.dto;
 
 import com.cyber_chill.entity.Reserve;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.Duration;

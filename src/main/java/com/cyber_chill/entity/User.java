@@ -1,4 +1,3 @@
-
 package com.cyber_chill.entity;
 
 import com.cyber_chill.controller.dto.UserDto;
@@ -7,7 +6,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,6 +23,7 @@ public class User {
     private Long id;
     private String name;
     private UserRole role;
+    private String steamAcc;
 
     public User(UserDto user) {
         id = user.getId();
@@ -36,6 +39,16 @@ public class User {
         level = user.getLevel();
     }
 
+    public User(String name, UserRole role, String steamAcc, List<Reserve> reservations) {
+        this.name = name;
+        this.role = role;
+        this.steamAcc = steamAcc;
+        this.reservations = reservations;
+        this.level = UserLevel.STARTER; // За замовчуванням встановлюємо рівень на STARTER
+        checkSteamLevel(steamAcc); // Перевірка рівня Steam після створення користувача
+    }
+
+
     public String getEmail() {
         return email;
     }
@@ -46,7 +59,6 @@ public class User {
 
     @Column(unique = true)
     private String email;
-    private String steamAcc;
 
     @OneToMany
     private List<Reserve> reservations;
@@ -161,4 +173,3 @@ public class User {
         this.level = level;
     }
 }
-

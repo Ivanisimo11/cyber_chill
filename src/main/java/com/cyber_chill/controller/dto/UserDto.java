@@ -1,4 +1,3 @@
-
 package com.cyber_chill.controller.dto;
 
 import com.cyber_chill.entity.User;
@@ -126,4 +125,3 @@ public class UserDto {
         this.level = level;
     }
 }
-

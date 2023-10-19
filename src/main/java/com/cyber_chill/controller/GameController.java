@@ -1,7 +1,7 @@
 package com.cyber_chill.controller;
 
 import com.cyber_chill.fake.fakeDto.FakeGameDto;
-import com.cyber_chill.entity.FakeGame;
+import com.cyber_chill.fake.fakeEntity.FakeGame;
 import com.cyber_chill.fake.fakeService.FakeGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

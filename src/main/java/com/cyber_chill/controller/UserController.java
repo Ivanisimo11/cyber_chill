@@ -1,7 +1,7 @@
 package com.cyber_chill.controller;
 
 import com.cyber_chill.fake.fakeDto.FakeUserDto;
-import com.cyber_chill.entity.FakeUser;
+import com.cyber_chill.fake.fakeEntity.FakeUser;
 import com.cyber_chill.fake.fakeService.FakeUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

@@ -1,7 +1,7 @@
 package com.cyber_chill.controller;
 
 import com.cyber_chill.fake.fakeDto.FakeReserveDto;
-import com.cyber_chill.entity.FakeReserve;
+import com.cyber_chill.fake.fakeEntity.FakeReserve;
 import com.cyber_chill.fake.fakeService.FakeReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

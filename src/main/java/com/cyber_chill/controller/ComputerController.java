@@ -1,12 +1,11 @@
 package com.cyber_chill.controller;
 
-import com.cyber_chill.fake.fakeDto.FakeComputerDto;
-import com.cyber_chill.fake.fakeEntity.FakeComputer;
-import com.cyber_chill.fake.fakeService.FakeComputerService;
+import com.cyber_chill.controller.dto.ComputerDto;
+import com.cyber_chill.entity.Computer;
+import com.cyber_chill.service.ComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -14,25 +13,25 @@ import java.util.List;
 public class ComputerController {
 
     @Autowired
-    private FakeComputerService computerService;
+    private ComputerService computerService;
 
     @GetMapping("/")
-    public List<FakeComputer> getAllComputers() {
+    public List<Computer> getAllComputers() {
         return computerService.getAllComputers();
     }
 
     @GetMapping("/{id}")
-    public FakeComputer getComputer(@PathVariable Long id) {
+    public Computer getComputer(@PathVariable Long id) {
         return computerService.getComputer(id);
     }
 
     @PostMapping("/")
-    public FakeComputer addComputer(@RequestBody @Validated FakeComputerDto computer) {
+    public Computer addComputer(@RequestBody @Validated ComputerDto computer) {
         return computerService.addOrUpdateComputer(computer);
     }
 
     @PutMapping("/{id}")
-    public FakeComputer updateComputer(@PathVariable Long id, @Validated @RequestBody FakeComputerDto computer) {
+    public Computer updateComputer(@PathVariable Long id, @Validated @RequestBody ComputerDto computer) {
         computer.setId(id);
         return computerService.addOrUpdateComputer(computer);
     }

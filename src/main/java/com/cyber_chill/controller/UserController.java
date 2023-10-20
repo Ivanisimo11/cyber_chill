@@ -1,8 +1,8 @@
 package com.cyber_chill.controller;
 
-import com.cyber_chill.fake.fakeDto.FakeUserDto;
-import com.cyber_chill.fake.fakeEntity.FakeUser;
-import com.cyber_chill.fake.fakeService.FakeUserService;
+import com.cyber_chill.controller.dto.UserDto;
+import com.cyber_chill.entity.User;
+import com.cyber_chill.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,25 +14,25 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private FakeUserService userService;
+    private UserService userService;
 
     @GetMapping("/")
-    public List<FakeUser> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public FakeUser getUser(@PathVariable Long id) {
+    public User getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
     @PostMapping("/")
-    public FakeUser addUser(@RequestBody @Validated FakeUserDto user) {
+    public User addUser(@RequestBody @Validated UserDto user) {
         return userService.addUser(user);
     }
 
     @PutMapping("/{id}")
-    public FakeUser updateUser(@PathVariable Long id, @RequestBody FakeUserDto user) {
+    public User updateUser(@PathVariable Long id, @RequestBody UserDto user) {
         user.setId(id);
         return userService.updateUser(id, user);
     }

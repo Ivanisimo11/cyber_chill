@@ -10,22 +10,26 @@
     {
       "name": "myapp.feature.discount.first-time",
       "type": "java.lang.Integer",
-      "sourceType": "com.cyber_chill.service.DiscountProperties"
+      "sourceType": "com.cyber_chill.service.DiscountProperties",
+      "defaultValue": 0
     },
     {
       "name": "myapp.feature.discount.middle-regular",
       "type": "java.lang.Integer",
-      "sourceType": "com.cyber_chill.service.DiscountProperties"
+      "sourceType": "com.cyber_chill.service.DiscountProperties",
+      "defaultValue": 0
     },
     {
       "name": "myapp.feature.discount.start-regular",
       "type": "java.lang.Integer",
-      "sourceType": "com.cyber_chill.service.DiscountProperties"
+      "sourceType": "com.cyber_chill.service.DiscountProperties",
+      "defaultValue": 0
     },
     {
       "name": "myapp.feature.discount.vip-regular",
       "type": "java.lang.Integer",
-      "sourceType": "com.cyber_chill.service.DiscountProperties"
+      "sourceType": "com.cyber_chill.service.DiscountProperties",
+      "defaultValue": 0
     }
   ],
   "hints": []

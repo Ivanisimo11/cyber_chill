@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "2913d0b6-f27e-41cc-9029-64b2b17e8fba",
+		"name": "Spring boot collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27057736",
+		"_collection_link": "https://winter-desert-566050.postman.co/workspace/My-Workspace~8b140d1e-cd53-469b-8b92-d8dfe78ab371/collection/27057736-2913d0b6-f27e-41cc-9029-64b2b17e8fba?action=share&creator=27057736&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if the response is an empty array\r",
+							"pm.test(\"Verify Empty Array Response\", function () {\r",
+							"    var responseData = pm.response.json();\r",
+							"\r",
+							"    // Check if the response is an array and has a length of 0\r",
+							"    pm.expect(Array.isArray(responseData) && responseData.length === 0).to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/game/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify ID in JSON Response\", function () {\r",
+							"    pm.expect(pm.response.json().id).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/game/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify JSON Response\", function () {\r",
+							"    var expectedResponse = {\r",
+							"        \"id\": 1,\r",
+							"        \"name\": \"Tetris\",\r",
+							"        \"computers\": null\r",
+							"    };\r",
+							"    pm.expect(pm.response.json()).to.eql(expectedResponse);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\":\"Tetris\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/game/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if the \"name\" field in the response JSON is equal to \"Tetris 2\"\r",
+							"pm.test(\"Verify Name in JSON Response\", function () {\r",
+							"    pm.expect(pm.response.json().name).to.eql(\"Tetris 2\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\":\"Tetris 2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/game/0",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/game/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

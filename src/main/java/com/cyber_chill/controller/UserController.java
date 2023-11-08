@@ -5,6 +5,7 @@ import com.cyber_chill.entity.User;
 import com.cyber_chill.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,5 +47,13 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.removeUser(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/{id}/details")
+    public String showUserDetails(@PathVariable Long id, Model model) {
+        User user = userService.getUser(id);
+        model.addAttribute("user", user); // Передача об'єкта користувача у модель
+        return "user"; // Повертаємо назву HTML-шаблону
     }
 }

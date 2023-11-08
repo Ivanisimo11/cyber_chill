@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,5 +59,13 @@ public class ComputerController {
     @DeleteMapping("/{id}")
     public void deleteComputer(@PathVariable Long id) {
         computerService.removeComputer(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/{id}/details")
+    public String showComputerDetails(@PathVariable Long id, Model model) {
+        Computer computer = computerService.getComputer(id);
+        model.addAttribute("computer", computer); // Передача об'єкта комп'ютера у модель
+        return "computer"; // Назва HTML-шаблону
     }
 }

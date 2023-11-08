@@ -4,6 +4,7 @@ import com.cyber_chill.controller.dto.UserDto;
 import com.cyber_chill.entity.User;
 import com.cyber_chill.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,27 +17,32 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
+    @PreAuthorize("isAnonymous()")
     @PostMapping("/")
     public User addUser(@RequestBody @Validated UserDto user) {
         return userService.addUser(user);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody UserDto user) {
         user.setId(id);
         return userService.updateUser(id, user);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.removeUser(id);

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tag(name = "Computer", description = "Computer CRUD")
-@RestController
+@Controller
 @RequestMapping("/computer")
 public class ComputerController {
 
@@ -65,6 +65,9 @@ public class ComputerController {
     @GetMapping("/{id}/details")
     public String showComputerDetails(@PathVariable Long id, Model model) {
         Computer computer = computerService.getComputer(id);
+//        Computer computer = new Computer();
+//        computer.setId(1L);
+//        computer.setPrice(50.0);
         model.addAttribute("computer", computer); // Передача об'єкта комп'ютера у модель
         return "computer"; // Назва HTML-шаблону
     }

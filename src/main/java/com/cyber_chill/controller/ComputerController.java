@@ -65,10 +65,10 @@ public class ComputerController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/{id}/details")
     public String showComputerDetails(@PathVariable Long id, Model model) {
-        Computer computer = computerService.getComputer(id);
-//        Computer computer = new Computer();
-//        computer.setId(1L);
-//        computer.setPrice(50.0);
+        // Computer computer = computerService.getComputer(id);
+        Computer computer = new Computer();
+        computer.setId(1L);
+        computer.setPrice(50.0);
         model.addAttribute("computer", computer); // Передача об'єкта комп'ютера у модель
         return "computer"; // Назва HTML-шаблону
     }

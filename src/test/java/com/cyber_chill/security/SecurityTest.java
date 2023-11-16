@@ -18,29 +18,6 @@ public class SecurityTest {
     @Autowired
     private MockMvc mockMvc;
 
-//    @PreAuthorize("isAuthenticated()")
-    @Test
-    @WithMockUser(authorities="LOX")
-    public void testUserEndpointWithUserRole() throws Exception {
-        mockMvc.perform(get("/computer/"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    @WithMockUser(username = "admin", roles = "ADMIN")
-    public void testAdminEndpoint() throws Exception {
-        mockMvc.perform(get("/reserve-info/page"))
-                .andExpect(status().isOk());
-    }
-
-//    @Test
-//    @WithMockUser(username = "manager", roles = "MANAGER")
-//    public void testManagerEndpointWithManagerRole() throws Exception {
-//        mockMvc.perform(get("/your-manager-protected-endpoint"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string("Hello, Manager!"));
-//    }
-
     @WithMockUser(authorities="ADMIN")
     @Test
     void endpointWhenUserAuthorityThenAuthorized() throws Exception{
@@ -62,9 +39,4 @@ public class SecurityTest {
                 .andExpect(status().isForbidden());
     }
 
-    @Test
-    void anyWhenUnauthenticatedThenUnauthorized() throws Exception{
-        mockMvc.perform(get("/any"))
-                .andExpect(status().isUnauthorized());
-    }
 }

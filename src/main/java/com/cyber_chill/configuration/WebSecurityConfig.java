@@ -38,6 +38,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/reserve-info").hasAuthority("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .formLogin((form) -> form
@@ -48,5 +49,16 @@ public class WebSecurityConfig {
                 .logout(LogoutConfigurer::permitAll);
         return http.build();
     }
+
+//    @Bean
+//    SecurityFilterChain web(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeHttpRequests((authorize) -> authorize
+//                        .requestMatchers("/reserve-info").hasAuthority("ADMIN")
+//                        .anyRequest().authenticated()
+//                );
+//
+//        return http.build();
+//    }
 
 }

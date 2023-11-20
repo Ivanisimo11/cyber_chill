@@ -37,9 +37,8 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/reserve-info").hasAuthority("ADMIN")
-                        .anyRequest().permitAll()
+                .authorizeHttpRequests(authorize -> authorize
+                        .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")

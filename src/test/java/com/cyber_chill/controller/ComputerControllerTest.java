@@ -10,11 +10,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -31,26 +33,33 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = ComputerController.class)
+@ContextConfiguration(classes = TestConfiguration.class)
 public class ComputerControllerTest {
 
+    @MockBean
+    private ComputerRepository computerRepository;
 
-    @TestConfiguration
-    static class Conf {
-
-        @MockBean
-        private ComputerRepository computerRepository;
-
-
+    //    @TestConfiguration
+//    static class Conf {
+//
+//        @MockBean
+//        private ComputerRepository computerRepository;
+//
+//
+//        @Bean
+//        ComputerService computerService() {
+//            return new ComputerServiceImpl(computerRepository);
+//        }
+//    }
+    class TestConfiguration {
         @Bean
         ComputerService computerService() {
             return new ComputerServiceImpl(computerRepository);
         }
     }
-    @Autowired
-    ObjectMapper objectMapper;
 
     @Autowired
-    private ComputerRepository computerRepository;
+    ObjectMapper objectMapper;
 
     @Autowired
     private MockMvc mockMvc;

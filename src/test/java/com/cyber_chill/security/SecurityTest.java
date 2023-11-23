@@ -18,14 +18,14 @@ public class SecurityTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @WithMockUser(authorities="ADMIN")
+    @WithMockUser(roles="ADMIN")
     @Test
     void endpointWhenUserAuthorityThenAuthorized() throws Exception{
         mockMvc.perform(get("/reserve-info"))
                 .andExpect(status().isOk());
     }
 
-    @WithMockUser(authorities="USER")
+    @WithMockUser(roles="USER")
     @Test
     void endpointWhenUserAuthorityThenAuthorizedByUser() throws Exception{
         mockMvc.perform(get("/reserve-info"))

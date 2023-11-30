@@ -42,29 +42,4 @@ public class GameServiceImpl implements GameService {
         repository.deleteById(id);
 
     }
-    //    private GameDAO gameDAO;
-//
-//    public GameServiceImpl(GameDAO gameDAO) {
-//        this.gameDAO = gameDAO;
-//    }
-//
-//    @Override
-//    public List<Game> getAllGames() {
-//        return gameDAO.getAllGames();
-//    }
-//
-//    @Override
-//    public Game getGame(Long id) {
-//        return gameDAO.getGame(id);
-//    }
-//
-//    @Override
-//    public void addOrUpdateGame(Game game) {
-//        gameDAO.addOrUpdateGame(game);
-//    }
-//
-//    @Override
-//    public void removeGame(Long id) {
-//        gameDAO.removeGame(id);
-//    }
 }

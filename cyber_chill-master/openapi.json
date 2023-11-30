@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Spring Security Example </title>
+</head>
+<body>
+
+
+<form action="/login" method="post"><input type="hidden" name="_csrf" value="lpOkSKNhK0BxendfErSd8LUEr_wn1fe3L4-X2HCN1KI5a6iz8PbCLZBZHCNcGUM5dpmploFlgp4Qs8eaFrqlu0W_58BaDcrV"/>
+    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Sign In"/></div>
+</form>
+</body>
+</html>

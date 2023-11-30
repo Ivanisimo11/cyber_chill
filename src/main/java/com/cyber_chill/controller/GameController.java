@@ -6,6 +6,7 @@ import com.cyber_chill.entity.Game;
 import com.cyber_chill.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +48,14 @@ public class GameController {
     @DeleteMapping("/{id}")
     public void deleteGame(@PathVariable Long id) {
         gameService.removeGame(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/{id}/details")
+    public String showGameDetails(@PathVariable Long id, Model model) {
+        Game game = gameService.getGame(id);
+        model.addAttribute("game", game); // Передача об'єкта гри у модель
+        return "game"; // Назва HTML-шаблону
     }
 
 }

@@ -8,8 +8,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,7 @@ import java.util.List;
 
 @Tag(name = "Computer", description = "Computer CRUD")
 @RestController
-@RequestMapping("/computer")
+@RequestMapping(value = "/computer", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ComputerController {
 
     @Autowired
@@ -58,5 +60,16 @@ public class ComputerController {
     @DeleteMapping("/{id}")
     public void deleteComputer(@PathVariable Long id) {
         computerService.removeComputer(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/{id}/details")
+    public String showComputerDetails(@PathVariable Long id, Model model) {
+        // Computer computer = computerService.getComputer(id);
+        Computer computer = new Computer();
+        computer.setId(1L);
+        computer.setPrice(50.0);
+        model.addAttribute("computer", computer); // Передача об'єкта комп'ютера у модель
+        return "computer"; // Назва HTML-шаблону
     }
 }

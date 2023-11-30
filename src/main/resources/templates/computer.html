@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Computer Details</title>
+    <style>
+
+    </style>
+    <link rel="stylesheet" th:href="@{/main.css}"/>
 </head>
 <body>
 <h1>Computer Details</h1>
 <p>ID: <span th:text="${computer.id}"></span></p>
-<p>Name: <span th:text="${computer.name}"></span></p>
+<p>Price: <span th:text="${computer.price}"></span></p>
+<div sec:authorize="hasRole('USER')">
+    Text visible to user.
+
+</div>
+<div sec:authorize="hasRole('ADMIN')">
+    <a th:href="@{/computer/{id}/delete(id=${computer.id})}" class="link-button" id="myButton">delete</a>
+</div>
 </body>
 </html>

@@ -33,11 +33,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.example</groupId>
-			<artifactId>cyber-chill-starter</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
@@ -115,7 +110,34 @@
 			<scope>test</scope>
 		</dependency>
 
+
+
+
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-engine</artifactId>
+            <version>1.9.1</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
+
+
 
 
 	<build>
@@ -132,6 +154,12 @@
 					<target>16</target>
 				</configuration>
 			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.2</version>
+            </plugin>
 
 			<plugin>
 				<groupId>org.springdoc</groupId>
@@ -152,7 +180,10 @@
 					<outputDir>${project.basedir}</outputDir>
 				</configuration>
 			</plugin>
-		</plugins>
+
+
+
+        </plugins>
 	</build>
 
 </project>

@@ -1,4 +1,4 @@
-package com.cyber_chill.sceduler;
+package com.cyber_chill.scheduler;
 
 import com.cyber_chill.controller.dto.GameDto;
 import com.cyber_chill.entity.Game;

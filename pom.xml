@@ -32,12 +32,25 @@
 			<version>2.20.0</version>
 		</dependency>
 
+<!--		<dependency>-->
+<!--			<groupId>com.h2database</groupId>-->
+<!--			<artifactId>h2</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--			<version>2.2.224</version>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>com.mysql</groupId>-->
+<!--			<artifactId>mysql-connector-j</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
+
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-			<version>2.2.224</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
 		</dependency>
+
 
 <!--		Scheduler-->
 		<dependency>
@@ -45,11 +58,11 @@
 			<artifactId>quartz</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.batch</groupId>
-			<artifactId>spring-batch-core</artifactId>
-			<version>3.0.8.RELEASE</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.batch</groupId>-->
+<!--			<artifactId>spring-batch-core</artifactId>-->
+<!--			<version>3.0.8.RELEASE</version>-->
+<!--		</dependency>-->
 
 
 

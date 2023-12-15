@@ -1,11 +1,131 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Game Details</title>
+    <title>Game List</title>
+    <!-- Подключение Bootstrap для красивого дизайна -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{gameList.css}"/>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navigation-buttons li {
+            margin-right: 10px;
+        }
+
+        .logout-button {
+            font-size: 18px;
+        }
+
+        .game-container {
+            margin-top: 30px;
+        }
+
+        .game-title {
+            color: #007bff;
+        }
+
+        .game-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .game-item {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            margin-bottom: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .add-game-container {
+            margin-top: 20px;
+        }
+
+        .add-game-input {
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        .add-game-button {
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-<h1>Game Details</h1>
-<p>ID: <span th:text="${game.id}"></span></p>
-<p>Name: <span th:text="${game.name}"></span></p>
+
+<div class="container">
+    <div class="header">
+        <h1>Welcome to the CyberChill!</h1>
+        <ul class="navigation-buttons">
+            <li>
+                <form th:action="@{/home}" method="get">
+                    <button type="submit" class="btn btn-primary">Main</button>
+                </form>
+            </li>
+            <li>
+                <form th:action="@{/game/}" method="get">
+                    <button type="submit" class="btn btn-primary">Games</button>
+                </form>
+            </li>
+            <li>
+                <form th:action="@{/computer/}" method="get">
+                    <button type="submit" class="btn btn-primary">Computers</button>
+                </form>
+            </li>
+            <li>
+                <form th:action="@{/reserve/}" method="get">
+                    <button type="submit" class="btn btn-primary">Reserve</button>
+                </form>
+            </li>
+            <li>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-danger logout-button">Log Out</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="game-container">
+    <h1 class="game-title">List of games</h1>
+
+    <ul class="game-list">
+        <!-- Используйте Thymeleaf для динамического вывода имен игр -->
+        <li class="game-item" th:each="game : ${games}" th:text="${game.name}"></li>
+    </ul>
+</div>
+
+<div sec:authorize="hasRole('ADMIN')" class="add-game-container">
+    <form action="/product/create" method="post" enctype="multipart/form-data">
+        <input type="text" class="add-game-input" id="newGame" placeholder="Enter game name"/>
+        <input name="btn btn-success add-game-button" type="submit" value="Add game"/>
+    </form>
+
+</div>
+
+
+
 </body>
 </html>

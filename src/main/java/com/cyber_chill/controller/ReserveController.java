@@ -5,23 +5,32 @@ import com.cyber_chill.entity.Reserve;
 import com.cyber_chill.service.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/reserve")
+@Controller
+@RequestMapping("/reserve/")
 public class ReserveController {
 
     @Autowired
     private ReserveService reserveService;
 
+//    @PreAuthorize("isAuthenticated()")
+//    @GetMapping("/")
+//    public List<Reserve> getAllReserves() {
+//        return reserveService.getAllReserves();
+//    }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/")
-    public List<Reserve> getAllReserves() {
-        return reserveService.getAllReserves();
+    public String rev()
+    {
+        return "reserve";
     }
+
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/{id}")

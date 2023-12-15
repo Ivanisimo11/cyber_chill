@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <title>Главная страница</title>
-    <!-- Bootstrap CSS link (you can adjust the version if needed) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-    <!-- Custom styles for this template -->
+
     <style>
         body {
             background-color: #f8f9fa;
-            color: #343a40;
         }
 
         .container {
@@ -40,40 +35,43 @@
             font-size: 18px;
         }
 
-        .club-info {
-            background-color: #007bff;
-            color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        h1 {
+            color: #007bff;
         }
 
-        .club-description {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 20px;
         }
 
-        .club-column {
-            flex: 1;
-            background-color: #0056b3;
-            padding: 15px;
-            border-radius: 8px;
-            transition: transform 0.3s ease-in-out;
-            cursor: pointer;
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
         }
 
-        .club-column:hover {
-            transform: translateY(-5px);
+        th {
+            background-color: #007bff;
+            color: white;
         }
 
-        h1, h3 {
+        td {
+            background-color: #fff;
+        }
+
+        a {
             color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+
 <div class="container">
     <div class="header">
         <h1>Welcome to the CyberChill!</h1>
@@ -105,29 +103,30 @@
             </li>
         </ul>
     </div>
-
-    <!-- Дополнительная информация о CyberChill с крутыми стилями -->
-    <div class="club-info">
-        <h3>About CyberChill</h3>
-        <p>CyberChill is not just a computer club; it's a haven for gamers and tech enthusiasts. With cutting-edge gaming setups, high-performance computers, and a vibrant community, we redefine the gaming experience.</p>
-        <p>Join us to immerse yourself in the world of gaming, connect with fellow gamers, and unleash the power of the latest technology. CyberChill is where passion meets performance!</p>
-    </div>
-
-    <!-- Дополнительная информация с анимированными столбами -->
-    <div class="club-description">
-        <div class="club-column">
-            <h4>Events</h4>
-            <p>Exciting events happening regularly!</p>
-        </div>
-        <div class="club-column">
-            <h4>Community</h4>
-            <p>Connect with like-minded enthusiasts!</p>
-        </div>
-        <div class="club-column">
-            <h4>Technology</h4>
-            <p>Experience the latest in gaming tech!</p>
-        </div>
-    </div>
 </div>
+
+<h1>List of computers</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Price</th>
+        <th>Details</th> <!-- Новая колонка для ссылки на детали компьютера -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Используйте Thymeleaf для динамического вывода данных -->
+    <tr th:each="computer : ${computers}">
+        <td th:text="${computer.id}"></td>
+        <td th:text="${computer.price}"></td>
+        <!-- Добавьте другие ячейки данных, если необходимо -->
+
+        <!-- Добавление ссылки для деталей компьютера -->
+        <td>
+            <a th:href="@{/computer/{id}/details(id=${computer.id})}">Details</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

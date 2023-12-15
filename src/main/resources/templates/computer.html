@@ -2,21 +2,87 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Computer Details</title>
-    <style>
-
-    </style>
     <link rel="stylesheet" th:href="@{/main.css}"/>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #28a745;
+            margin-top: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        div {
+            margin-top: 20px;
+            padding: 15px;
+        }
+
+        form {
+            display: inline-block;
+        }
+
+        input[type="submit"] {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
 <h1>Computer Details</h1>
 <p>ID: <span th:text="${computer.id}"></span></p>
 <p>Price: <span th:text="${computer.price}"></span></p>
-<div sec:authorize="hasRole('USER')">
-    Text visible to user.
 
+<!-- Вывод списка игр для каждого компьютера -->
+<div>
+    <h2>Games:</h2>
+    <ul>
+        <li th:each="game : ${computer.games}" th:text="${game.name}"></li>
+    </ul>
 </div>
+
 <div sec:authorize="hasRole('ADMIN')">
-    <a th:href="@{/computer/{id}/delete(id=${computer.id})}" class="link-button" id="myButton">delete</a>
+    <form action="http://localhost:8080/computer/${computer.id}" method="post">
+        <!-- Добавляем скрытое поле для эмуляции DELETE-запроса -->
+        <input type="hidden" name="_method" value="DELETE"/>
+        <input type="submit" value="Delete"/>
+    </form>
 </div>
 </body>
 </html>

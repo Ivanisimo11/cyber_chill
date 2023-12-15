@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <title>Reserve a Computer</title>
+  <!-- Bootstrap CSS link (you can adjust the version if needed) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+  <!-- Custom styles for this template -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+      color: #343a40;
+    }
+
+    .custom-container {
+      margin-top: 50px;
+    }
+
+    .custom-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .custom-navigation-buttons {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .custom-navigation-buttons li {
+      margin-right: 10px;
+    }
+
+    .custom-logout-button {
+      font-size: 18px;
+    }
+
+    .custom-reservation-form {
+      background-color: #007bff;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .custom-form-input {
+      margin-bottom: 15px;
+    }
+
+    .custom-reserve-button {
+      background-color: #0056b3;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .custom-reserve-button:hover {
+      background-color: #004080;
+    }
+
+    h1, h3 {
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+<div class="custom-container">
+  <div class="custom-header">
+    <h1>Welcome to the CyberChill!</h1>
+    <ul class="custom-navigation-buttons">
+      <li>
+        <form th:action="@{/home}" method="get">
+          <button type="submit" class="btn btn-primary">Main</button>
+        </form>
+      </li>
+      <li>
+        <form th:action="@{/game/}" method="get">
+          <button type="submit" class="btn btn-primary">Games</button>
+        </form>
+      </li>
+      <li>
+        <form th:action="@{/computer/}" method="get">
+          <button type="submit" class="btn btn-primary">Computers</button>
+        </form>
+      </li>
+      <li>
+        <form th:action="@{/reserve/}" method="get">
+          <button type="submit" class="btn btn-primary">Reserve</button>
+        </form>
+      </li>
+      <li>
+        <form th:action="@{/logout}" method="post">
+          <button type="submit" class="btn btn-danger custom-logout-button">Log Out</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Форма резервирования компьютера с крутыми стилями -->
+  <div class="custom-reservation-form">
+    <h3>Reserve a Computer</h3>
+    <form th:action="@{/reserve}" method="post">
+      <div class="custom-form-input">
+        <label for="computerId">Computer ID:</label>
+        <input type="text" id="computerId" name="computerId" class="form-control" required/>
+      </div>
+      <div class="custom-form-input">
+        <label for="reservationDate">Reservation Date:</label>
+        <input type="date" id="reservationDate" name="reservationDate" class="form-control" required/>
+      </div>
+      <button type="submit" class="custom-reserve-button">Reserve Now</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

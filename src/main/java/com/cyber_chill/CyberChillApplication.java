@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableConfigurationProperties
 @SpringBootApplication
-@EnableScheduling
+//@EnableScheduling
 @EnableAspectJAutoProxy
 @EnableJpaRepositories(basePackages = {"com.cyber_chill"})
 public class CyberChillApplication  {

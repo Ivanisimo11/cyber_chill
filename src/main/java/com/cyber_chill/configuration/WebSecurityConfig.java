@@ -28,7 +28,8 @@ public class WebSecurityConfig {
         // ensure the passwords are encoded properly
         User.UserBuilder users = User.withDefaultPasswordEncoder();
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("admin").password("adminpass").roles("ADMIN").build());
+//        manager.createUser(users.username("admin").password("adminpass").roles("ADMIN").build());
+        manager.createUser(users.username("a").password("a").roles("ADMIN").build());
         manager.createUser(users.username("user").password("userpass").roles("USER").build());
         return manager;
     }
@@ -42,7 +43,7 @@ public class WebSecurityConfig {
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/login/loginsuccessfull", true)
+                        .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);

@@ -6,14 +6,15 @@ import com.cyber_chill.entity.Game;
 import com.cyber_chill.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/game")
+@Controller
+@RequestMapping("/game/")
 public class GameController {
 
     @Autowired
@@ -21,8 +22,10 @@ public class GameController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/")
-    public List<Game> getAllGames() {
-        return gameService.getAllGames();
+    public String getAllGames(Model model) {
+        List<Game> games = gameService.getAllGames(); // Замените на ваш метод получения списка игр
+        model.addAttribute("games", games);
+        return "game"; // Название вашего HTML-шаблона
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -31,10 +34,18 @@ public class GameController {
         return gameService.getGame(id);
     }
 
+
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @PostMapping("/")
+//    public Game addGame(@RequestBody @Validated GameDto game) {
+//        return gameService.addOrUpdateGame(game);
+//    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/")
-    public Game addGame(@RequestBody @Validated GameDto game) {
-        return gameService.addOrUpdateGame(game);
+    public String addGame(@RequestBody @Validated GameDto game) {
+        gameService.addOrUpdateGame(game);
+        return "redirect:/";
     }
 
     @PreAuthorize("hasRole('ADMIN')")

@@ -6,10 +6,13 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "computer")
 public class Computer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "price")
     private Double price;
     @OneToMany
     private List<Reserve> reservations;

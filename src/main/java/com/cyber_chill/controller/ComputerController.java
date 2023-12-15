@@ -18,23 +18,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tag(name = "Computer", description = "Computer CRUD")
-@RestController
-@RequestMapping(value = "/computer", produces = MediaType.APPLICATION_JSON_VALUE)
+@Controller
+@RequestMapping(value = "/computer/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ComputerController {
 
     @Autowired
     private ComputerService computerService;
 
-    @Operation(
-            summary = "Fetch all computers",
-            description = "fetches all computer entities and their data from data source")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
-    })
+//    @Operation(
+//            summary = "Fetch all computers",
+//            description = "fetches all computer entities and their data from data source")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "successful operation")
+//    })
+//    @PreAuthorize("isAuthenticated()")
+//    @GetMapping("/")
+//    public List<Computer> getAllComputers(Model model) {
+//        return computerService.getAllComputers();
+//
+//    }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/")
-    public List<Computer> getAllComputers() {
-        return computerService.getAllComputers();
+    public String getAllComputers(Model model) {
+        List<Computer> computers = computerService.getAllComputers();
+        model.addAttribute("computers", computers);
+        return "computers-main"; // Имя вашего HTML-шаблона
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -58,17 +67,16 @@ public class ComputerController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public void deleteComputer(@PathVariable Long id) {
+    public String deleteComputer(@PathVariable Long id) {
         computerService.removeComputer(id);
+        return "redirect:/computer/";
     }
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/{id}/details")
     public String showComputerDetails(@PathVariable Long id, Model model) {
         //Computer computer = computerService.getComputer(id);
-        Computer computer = new Computer();
-        computer.setId(1L);
-        computer.setPrice(50.0);
+        Computer computer = getComputer(id);
         model.addAttribute("computer", computer); // Передача об'єкта комп'ютера у модель
         return "computer"; // Назва HTML-шаблону
     }

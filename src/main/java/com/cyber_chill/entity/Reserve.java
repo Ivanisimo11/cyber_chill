@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.time.Duration;
 @Entity
+@Table(name = "reserve")
 public class Reserve {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
